@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres non rendus{% endblock %}
+
+{% block body %}
+    <h2>Liste des livres non rendus</h2>
+
+    <div class="card-columns">
+        {% for livre in livres %}
+            {% include "livre/vignette.html.twig" with {"indisponible": true} %}
+        {% else %}
+            <h2>Tous les livres de notre bibliothèque sont disponibles</h2>
+        {% endfor %}
+    </div>
+
+{% endblock %}

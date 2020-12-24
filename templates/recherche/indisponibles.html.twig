@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres indisponibles{% endblock %}
+
+{% block body %}
+
+    <div class="card-columns">
+        {% for emprunt in emprunts %}
+            {% include "livre/vignette.html.twig" with {"livre" : emprunt.livre} %}
+        {% else %}
+            <h2>Tous les livres de notre bibliothèque sont disponibles</h2>
+        {% endfor %}
+    </div>
+
+{% endblock %}

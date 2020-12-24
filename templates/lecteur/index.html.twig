@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace lecteur{% endblock %}
+
+{% block body %}
+    {# Comment récupérer la liste des emprunts de l'abonné connecté #}
+    {# app.user.emprunts #}
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th colspan=3>Liste des emprunts</th>
+            </tr>
+            <tr>
+                <th>Livre</th>
+                <th>Emprunté le</th>
+                <th>Rendu le</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for emprunt in app.user.emprunts %}
+                <tr>
+                    <td>{{ emprunt.livre.titre ~ " - " ~ emprunt.livre.auteur }}</td>
+                    <td>{{ emprunt.dateEmprunt|date("d/m/Y") }}</td>
+                    <td>{{ emprunt.dateRetour is not null ? emprunt.dateRetour|date("d/m/Y") : "-" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

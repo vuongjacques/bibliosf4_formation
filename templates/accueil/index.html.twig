@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue à la bibliothèque en ligne{% endblock %}
+
+{% block body %}
+    <h2>Livres disponibles</h2>
+    <div class="card-columns">
+        {% for livre in livresDisponibles %}
+            {% include "livre/vignette.html.twig" %}
+        {% endfor %}
+    </div>
+
+    <hr>
+    <h2>Livres indisponibles</h2>
+    <div class="card-columns">
+        {% for livre in livresNonRendus %}
+            {% include "livre/vignette.html.twig" with {"indisponible": true} %}
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

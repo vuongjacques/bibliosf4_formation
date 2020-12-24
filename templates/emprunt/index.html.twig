@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunt index{% endblock %}
+
+{% block body %}
+    <h1>Emprunt index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Livre</th>
+                <th>Abonné</th>
+                <th>Date d'emprunt</th>
+                <th>Date de retour</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprunt in emprunts %}
+            <tr>
+                <td>{{ emprunt.id }}</td>
+                <td> 
+                    {{ emprunt.livre.titre ~ " - " ~ emprunt.livre.auteur|upper }} 
+                </td>
+                <td> 
+                    {{ emprunt.abonne.pseudo|upper }} 
+                </td>
+                <td>{{ emprunt.dateEmprunt ? emprunt.dateEmprunt|date('d-m-Y') : '' }}</td>
+                <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('d-m-Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('emprunt_show', {'id': emprunt.id}) }}">Montrer</a>
+                    <a href="{{ path('emprunt_edit', {'id': emprunt.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas d'emprunt</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('emprunt_new') }}">Nouveau</a>
+{% endblock %}

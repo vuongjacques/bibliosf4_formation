@@ -1,0 +1,13 @@
+
+<div class="card" >
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ livre.titre }}</h5>
+    <p class="card-text">{{ livre.auteur }}</p>
+    
+    {% if is_granted("ROLE_ABONNE") %}
+        <a href=" {{ path("reserver_livre", {"id": livre.id})}} " class="btn btn-primary {{ indisponible is defined ? "disabled" : "" }} ">Réserver</a>
+    {% endif %}
+    
+  </div>
+</div>
